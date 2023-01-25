@@ -6,7 +6,7 @@ import streamlit as st
 from audio_recorder_streamlit import audio_recorder
 
 audio_bytes = audio_recorder(text="record audio here", energy_threshold=(-1.0, 1.0),
-  pause_threshold=10.0)
+  pause_threshold=3.0)
 
 if audio_bytes:
     st.audio(data=audio_bytes, format="audio/wav")
