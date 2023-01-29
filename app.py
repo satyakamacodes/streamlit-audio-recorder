@@ -69,28 +69,24 @@ with col_1:
     with col_2:
         machine_selected_2 = st.radio(
             label="select machine",
-            options=df.loc[df["user"] == user_selected_2, "machine"].unique(),
+            options=df.query("user == @user_selected_2")["machine"].unique(),
         )
 
         with col_3:
+
             date_selected_2 = st.radio(
                 label="select date",
-                options=df.loc[
-                    (df["user"] == user_selected_2)
-                    & (df["machine"] == machine_selected_2),
-                    "date",
-                ].unique(),
+                options=df.query(
+                    "user == @user_selected_2 and machine == @machine_selected_2"
+                )["date"].unique(),
             )
 
             with col_4:
                 time_selected_2 = st.radio(
                     label="select time",
-                    options=df.loc[
-                        (df["user"] == user_selected_2)
-                        & (df["machine"] == machine_selected_2)
-                        & (df["date"] == date_selected_2),
-                        "time",
-                    ],
+                    options=df.query(
+                        "user == @user_selected_2 and machine == @machine_selected_2 and date == @date_selected_2"
+                    )["time"].unique(),
                 )
 
 
@@ -107,64 +103,12 @@ st.audio(selected_file_1)
 
 st.write("first file selected is ", selected_file_1)
 
-# def select_file(df: pd.DataFrame, promt: str) -> str:
-#     """Select path of the file by user, machine, date and time.
-#     Gives option to hear the audio too."""
-#     st.header(f"Select the :blue[{promt}].")
-
-#     col_1, col_2, col_3, col_4 = st.columns(4)
-
-#     with col_1:
-#         user_selected = st.radio(label="select user", options=df["user"].unique())
-
-#         with col_2:
-#             machine_selected = st.radio(
-#                 label="select machine",
-#                 options=df.loc[df["user"] == user_selected, "machine"].unique(),
-#             )
-
-#             with col_3:
-#                 date_selected = st.radio(
-#                     label="select date",
-#                     options=df.loc[
-#                         (df["user"] == user_selected)
-#                         & (df["machine"] == machine_selected),
-#                         "date",
-#                     ].unique(),
-#                 )
-
-#                 with col_4:
-#                     time_selected = st.radio(
-#                         label="select time",
-#                         options=df.loc[
-#                             (df["user"] == user_selected)
-#                             & (df["machine"] == machine_selected)
-#                             & (df["date"] == date_selected),
-#                             "time",
-#                         ],
-#                     )
-
-#     selected_file = df.loc[
-#         (df["user"] == user_selected)
-#         & (df["machine"] == machine_selected)
-#         & (df["date"] == date_selected)
-#         & (df["time"] == time_selected),
-#         "filename",
-#     ].values[0]
-
-#     st.audio(selected_file)
-
-#     return selected_file
-
-
-# first_audio_path = select_file(df=df, promt="First audio")
-# second_audio_path = select_file(df=df, promt="Second audio")
-
 
 st.header("Select the :blue[Second file].")
 col_1, col_2, col_3, col_4 = st.columns(4)
 
 with col_1:
+
     user_selected = st.radio(
         label="select user", options=df["user"].unique(), key="2nd"
     )
@@ -172,29 +116,25 @@ with col_1:
     with col_2:
         machine_selected = st.radio(
             label="select machine",
-            options=df.loc[df["user"] == user_selected, "machine"].unique(),
+            options=df.query("user == @user_selected")["machine"].unique(),
             key="2nd_1",
         )
 
         with col_3:
             date_selected = st.radio(
                 label="select date",
-                options=df.loc[
-                    (df["user"] == user_selected) & (df["machine"] == machine_selected),
-                    "date",
-                ].unique(),
+                options=df.query(
+                    "user ==@user_selected and machine==@machine_selected"
+                )["date"].unique(),
                 key="2nd_2",
             )
 
             with col_4:
                 time_selected = st.radio(
                     label="select time",
-                    options=df.loc[
-                        (df["user"] == user_selected)
-                        & (df["machine"] == machine_selected)
-                        & (df["date"] == date_selected),
-                        "time",
-                    ],
+                    options=df.query(
+                        "user ==@user_selected and machine==@machine_selected and date ==@date_selected"
+                    )["time"].unique(),
                     key="2nd_3",
                 )
 
