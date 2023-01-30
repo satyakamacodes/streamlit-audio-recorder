@@ -1,6 +1,6 @@
 librosa
-audio-recorder-streamlit==0.0.8
-streamlit==1.17.0
-numpy==1.23.1
-pandas==1.5.2
-scipy==1.9.3
+audio-recorder-streamlit
+streamlit
+numpy
+pandas
+scipy
