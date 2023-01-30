@@ -1,3 +1,4 @@
+pysndfile==1.4.4
 audio-recorder-streamlit==0.0.8
 streamlit==1.17.0
 numpy==1.23.1
